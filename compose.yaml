@@ -1,0 +1,42 @@
+
+networks:
+  mediraksha-network:
+
+services:
+  database:
+    image: postgres:16
+    ports:
+      - "5433:5432"
+    secrets:
+      - db_secret
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: db_password
+      POSTGRES_DB: appdb
+    volumes:
+      - mediraksha_data:/etc/postgres/data
+
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    image: ghcr.io/Mediraksha-App/mediraksha-app:latest
+    ports:
+      - "8000:8000"
+    environment:
+      JWT_SECRET: jwt_secret_key
+      DB_URL: postgres://postgres:db_password@localhost:5433/appdb
+      GEOAPIFY_API_KEY: geoapify_api_key
+    depends_on:
+      database:
+        condition: service_healthy
+
+
+volumes:
+  mediraksha_data:
