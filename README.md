@@ -62,7 +62,7 @@ Mediraksha is fully containerized using Docker to ensure seamless deployment acr
 
 ## 🔗 Quick Links & Resources
 
-| Resource | Link |
+| Resource | Links |
 | :--- | :--- |
 | 🗄️ **Database Schema Design** | [View DBdiagram.io 📊](https://dbdiagram.io/d/Mediraksha-69a16c88a3f0aa31e14af24b) |
 | 🔌 **API Architecture Board** | [View Miro Board 🗺️](https://miro.com/app/board/uXjVG3Ywa2M=/?share_link_id=206279430295) |
