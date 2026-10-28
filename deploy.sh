@@ -3,7 +3,7 @@
 echo "Updating package lists and installing Docker and Docker Compose..."
 sudo apt update -y
 sudo apt install -y docker.io docker-compose
-
+# installing the docker
 echo "Starting Docker service..."
 sudo systemctl start docker
 sudo systemctl enable docker
